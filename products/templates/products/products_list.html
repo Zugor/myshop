@@ -1,62 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends '_base.html' %}
 
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+{% block title %} Trang chủ {% endblock %}
 
-<!-- Primary Meta Tags -->
-<title>
-    Django Pixel Lite - Presentation | AppSeed
-</title>
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
 
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="title" content="Pixel - Free Bootstrap 5 UI Kit">
-<meta name="author" content="Themesberg">
-<meta name="description" content="Open source and free Bootstrap 5 UI Kit featuring 80 UI components, 5 example pages, and a Gulp and Sass workflow.">
-<link rel="canonical" href="https://appseed.us/django/django-pixel-bootstrap-uikit">
+{% block content %}
+    <main>
+        {% include 'includes/preloader.html' %}
+        <!--End of Title section-->
+        <div class="section section-md">
+            <div class="container">
+                <div class="row mb-5">
 
-<!-- Open Graph / Facebook -->
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://demo.themesberg.com/pixel-bootstrap-5-ui-kit">
-<meta property="og:title" content="Pixel - Free Bootstrap 5 UI Kit">
-<meta property="og:description" content="Open source and free Bootstrap 5 UI Kit featuring 80 UI components, 5 example pages, and a Gulp and Sass workflow.">
-<meta property="og:image" content="https://themesberg.s3.us-east-2.amazonaws.com/public/products/pixel-lite/pixel-lite-preview.jpg">
+                    {% for product in object_list %}
+                    <div class="col-12 col-md-6 col-lg-4 mb-5 mb-lg-0">
+                        <div class="card shadow">
+                            <img src="{{ product.image.url }}" class="card-img-top rounded-top"
+                                alt="Themesberg office">
+                            <div class="card-body">
+                                <h3 class="h5 card-title mt-3">{{ product.name }}</h3>
+                                <p class="card-text">${{ product.price }}</p>
+                                <a href="#" class="btn btn-primary btn-sm">Thêm vào giỏ</a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </main>
 
-<!-- Twitter -->
-<meta property="twitter:card" content="summary_large_image">
-<meta property="twitter:url" content="https://demo.themesberg.com/pixel-bootstrap-5-ui-kit">
-<meta property="twitter:title" content="Pixel - Free Bootstrap 5 UI Kit">
-<meta property="twitter:description" content="Open source and free Bootstrap 5 UI Kit featuring 80 UI components, 5 example pages, and a Gulp and Sass workflow.">
-<meta property="twitter:image" content="https://themesberg.s3.us-east-2.amazonaws.com/public/products/pixel-lite/pixel-lite-preview.jpg">
+{% endblock content %}
 
-<!-- Favicon -->
-<link rel="apple-touch-icon" sizes="120x120" href="{{ ASSETS_ROOT }}/img/favicon/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="{{ ASSETS_ROOT }}/img/favicon/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="{{ ASSETS_ROOT }}/img/favicon/favicon-16x16.png">
-<link rel="manifest" href="{{ ASSETS_ROOT }}/img/favicon/site.webmanifest">
-<link rel="mask-icon" href="{{ ASSETS_ROOT }}/img/favicon/safari-pinned-tab.svg" color="#ffffff">
-<meta name="msapplication-TileColor" content="#ffffff">
-<meta name="theme-color" content="#ffffff">
-
-<!-- Fontawesome -->
-<link type="text/css" href="{{ ASSETS_ROOT }}/vendor/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
-
-<!-- Pixel CSS -->
-<link type="text/css" href="{{ ASSETS_ROOT }}/css/pixel.css" rel="stylesheet">
-
-</head>
-<body>
-
-<h2>Sản phẩm</h2>
-<div>
-    {% for product in object_list %}
-    <div>
-        <p><img src="{{ product.image.url }}"/></p>
-        <p>{{ product.name }}</p>
-        <p>{{ product.price }}$</p>
-    </div>
-    {% endfor %}
-</div>
-
-</body>
-</html>
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}
