@@ -1,0 +1,10 @@
+<h2>Sản phẩm</h2>
+<div>
+    {% for product in object_list %}
+    <div>
+        <p><img src="{{ product.image.url }}"/></p>
+        <p>{{ product.name }}</p>
+        <p>{{ product.price }}$</p>
+    </div>
+    {% endfor %}
+</div>

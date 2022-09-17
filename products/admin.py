@@ -4,6 +4,6 @@ from products.models import Products
 
 # Register your models here.
 class ProductsAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('name', 'code', 'price')
 
 admin.site.register(Products, ProductsAdmin)
