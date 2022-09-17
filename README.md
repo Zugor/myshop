@@ -1,5 +1,12 @@
 # Xây dựng website bán hàng với Django
 
+Tài liệu về Django: https://docs.djangoproject.com/en/4.1/
+
+Slide bài giảng: https://drive.google.com/drive/folders/1qHLWc0v8LA4BO9wpwBy3DsIrlQh7zm5A?usp=sharing
+
+Template sử dụng để làm giao diện: https://demo.themesberg.com/pixel-bootstrap-5-ui-kit/#components
+
+
 ### Yêu cầu chức năng:
 * Quản lý sản phẩm:
   * Trang quản trị: Danh sách, Thêm, sửa, xóa sản phẩm
