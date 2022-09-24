@@ -6,7 +6,36 @@ Copyright (c) 2019 - present AppSeed.us
 # Create your views here.
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
+from django.views import View
+
 from .forms import LoginForm, SignUpForm
+
+
+class LoginView(View):
+    form = LoginForm
+    template = "accounts/login.html"
+
+    def get(self, request):
+        form = self.form()
+        return render(request, self.template, {"form": form, "msg": ""})
+
+    def post(self, request, *args, **kwargs):
+        msg = None
+        form = self.form(request.POST)
+
+        if form.is_valid():
+            username = form.cleaned_data.get("username")
+            password = form.cleaned_data.get("password")
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect("/")
+            else:
+                msg = 'Invalid credentials'
+        else:
+            msg = 'Error validating the form'
+
+        return render(request, self.template, {"form": form, "msg": msg})
 
 
 def login_view(request):
