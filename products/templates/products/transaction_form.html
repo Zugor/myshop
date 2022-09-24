@@ -1,0 +1,65 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Payment {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+    <main>
+
+        {% include 'includes/preloader.html' %}
+
+        <!-- Section -->
+        <section class="section section-md">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-12 col-lg-8">
+                        <!-- Contact Card -->
+                        <div class="card border-0 p-2 p-md-3 p-lg-5">
+                            <div class="card-header bg-white border-0 text-center">
+                                <h2>Paying your cart</h2>
+                                <p>For Free</p>
+                            </div>
+                            <div class="card-body pt-0">
+                                <form method="POST" action="">
+                                    {% csrf_token %}
+                                    <!-- Form -->
+                                    <div class="alert alert-danger" role="alert">
+                                        {{ form.errors }}
+                                    </div>
+                                    <div class="mb-4">
+                                        <label for="name">Your Address</label>
+                                        <div class="input-group">
+                                            {{ form.address }}
+                                        </div>
+                                    </div>
+                                    <!-- End of Form -->
+                                    <!-- Form -->
+                                    <div class="mb-4">
+                                        <label for="email">Phone number</label>
+                                        <div class="input-group">
+                                            {{ form.phone }}
+                                        </div>
+                                    </div>
+                                    <!-- End of Form -->
+                                    <div class="d-grid">
+                                        <button type="submit" class="btn btn-secondary">PAY</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- End of Contact Card -->
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End of section -->
+
+    </main>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

@@ -2,10 +2,32 @@ from django.urls import reverse_lazy
 from django.shortcuts import redirect
 from django.views import generic, View
 from django.http import Http404
-from products.models import Product, Cart, AmountProductsCart
+from django.forms import ValidationError
+from products.models import Product, Cart, AmountProductsCart, Transaction
 
 
 # Create your views here.
+class PaymentView(generic.CreateView):
+    model = Transaction
+    fields = ['address', 'phone']
+    success_url = reverse_lazy('cart')
+
+    def form_valid(self, form):
+        user = self.request.user
+        try:
+            cart = Cart.objects.get(owner=user)
+        except Cart.DoesNotExist:
+            raise ValidationError('Cart does not exist!')
+        form.instance.cart = cart
+        form.instance.owner = user
+
+        return super().form_valid(form)
+
+    # def post(self, request, *args, **kwargs):
+    #     print(request.POST)
+    #     return super().post(request, *args, **kwargs)
+
+
 class RemoveCartView(View):
     success_url = reverse_lazy('cart')
 
